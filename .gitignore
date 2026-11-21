@@ -1,0 +1,21 @@
+# secrets
+.env
+.env.*
+!.env.example
+
+# python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+
+# experiment cache (reproducible from API; large)
+cache/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
