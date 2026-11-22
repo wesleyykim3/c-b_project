@@ -72,10 +72,16 @@ def score_row(row: dict) -> tuple[list[dict], dict]:
 
 
 def score_rows(rows) -> tuple[list[dict], list[dict]]:
-    """Score many raw trials. Returns (all position rows, all trial summaries)."""
+    """Score many raw trials. Returns (all position rows, all trial summaries).
+
+    Every row and summary gets a `trial_id` (index in the input), so position
+    rows can be grouped back into trials (list_id alone repeats across cells).
+    """
     pos_rows, summaries = [], []
-    for row in rows:
+    for i, row in enumerate(rows):
         p, s = score_row(row)
+        for d in (*p, s):
+            d["trial_id"] = i
         pos_rows.extend(p)
         summaries.append(s)
     return pos_rows, summaries
